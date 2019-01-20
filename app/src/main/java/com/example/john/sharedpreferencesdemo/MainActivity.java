@@ -1,5 +1,4 @@
 package com.example.john.sharedpreferencesdemo;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -21,17 +20,14 @@ import android.widget.TextView;
 //      you should use SharedPreferences.
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivityLog";
-
     private TextView mTextView;
     private String message;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: ");
         mTextView = findViewById(R.id.textView);
-
         SharedPreferences mPrefs = getApplicationContext()
                 .getSharedPreferences("com.example.john.sharedpreferencesdemo", Context.MODE_PRIVATE);
         message = mPrefs.getString("message",null);
@@ -40,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         }else{
             mTextView.setText("hello!!");
         }
-
     }
     //saves the message to "YOU ROCK" which will be saved in shared pref
     //-shared prefs persist even after app is killed
@@ -52,11 +47,9 @@ public class MainActivity extends AppCompatActivity {
                 .getSharedPreferences("com.example.john.sharedpreferencesdemo", Context.MODE_PRIVATE);
         //Context.MODE_PRIVATE -File creation mode: the default mode, where the created file can only
         //   be accessed by the calling application (or all applications sharing the same user ID).
-
         //Get a editor object-which can put key/values into SharedPreferences
         SharedPreferences.Editor editor = mPrefs.edit();
         editor.putString("message", message);
         editor.commit();
     }
-
 }
